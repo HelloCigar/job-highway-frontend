@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@material-tailwind/html": "^2.2.2",
+    "@nuxt/typescript-build": "^3.0.2",
     "@pinia/nuxt": "^0.5.1",
     "nuxt": "^3.12.3",
     "vue": "latest"
