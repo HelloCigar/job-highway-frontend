@@ -4,8 +4,8 @@
             class="flex flex-col items-center justify-center w-full py-4 mt-12 border-t border-blue-gray-50 md:flex-row md:justify-between">
             <p
                 class="block mb-4 font-sans text-sm antialiased font-normal leading-normal text-center text-blue-gray-900 md:mb-0">
-                © 2023
-                <a href="https://material-tailwind.com/">John Hamir Karim</a>. All
+                © 2024
+                <a href="#">John Hamir Karim</a>. All
                 Rights Reserved.
             </p>
             <div class="flex gap-4 text-blue-gray-900 sm:justify-center">
