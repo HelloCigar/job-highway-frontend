@@ -50,10 +50,7 @@ function deleteJob(id) {
                     v-on:deleteJob="$event => deleteJob(job?.id)" />
             </div>
             <div v-else>
-                <h2
-                    class="block antialiased tracking-normal font-sans text-4xl font-semibold leading-[1.3] text-inherit">
-                    No jobs yet
-                </h2>
+                <Skeleton />
             </div>
         </div>
     </div>
