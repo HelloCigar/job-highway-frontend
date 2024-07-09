@@ -14,7 +14,6 @@ async function deleteJob(id) {
             'Content-Type': 'application/json'
         }
     }).then(response => {
-        console.log('response', response)
         emit('deleteJob', id)
     }).catch(error => {
         console.log(error)

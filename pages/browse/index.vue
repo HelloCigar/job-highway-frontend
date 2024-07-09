@@ -37,8 +37,6 @@ function toggleCategory(id) {
         selectedCategories.splice(index, 1)
     }
 
-    console.log('toggleCategories', selectedCategories.join(','))
-
     selectedCategoriesRef.value = selectedCategories.join(',')
 }
 

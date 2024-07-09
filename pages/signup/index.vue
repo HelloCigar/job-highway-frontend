@@ -13,7 +13,6 @@ let errors = ref([])
 
 
 async function submitForm() {
-    console.log('submitForm')
 
     errors.value = []
 
@@ -29,8 +28,6 @@ async function submitForm() {
             password: password.value
         }
     }).then(response => {
-        console.log('response', response);
-
         router.push({ path: '/login' })
     })
         .catch(error => {
@@ -39,11 +36,9 @@ async function submitForm() {
                 for (const property in error.response.data) {
                     errors.value.push(`${property}: ${error.response.data[property]}`)
                 }
-                console.log(JSON.stringify(error.response.data))
 
             } else if (error.message) {
                 errors.value.push('Something went wrong. Please try again')
-                console.log(JSON.stringify(error))
             }
         })
 }

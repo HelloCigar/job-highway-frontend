@@ -28,8 +28,6 @@ export const useUserStore = defineStore({
                     this.user.email = userEmail;
                 }
                 this.user.isAuthenticated = true
-
-                console.log('Initialized user', this.user)
             }
         },
         /**

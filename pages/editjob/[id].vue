@@ -22,11 +22,9 @@ let position_location = ref(job?.value.position_location)
 let company_name = ref(job?.value.company_name)
 let company_location = ref(job?.value.company_location)
 let company_email = ref(job?.value.company_email)
-console.log('category', job)
 let errors = ref([])
 
 async function submitForm() {
-    console.log('submitForm')
 
     errors.value = []
 
@@ -75,7 +73,6 @@ async function submitForm() {
             'Content-Type': 'application/json'
         }
     }).then(data => {
-        console.log('created', data);
         useRouter().push({ path: '/myjobs' })
     })
         .catch(error => {
@@ -84,11 +81,9 @@ async function submitForm() {
                 for (const property in error.response.data) {
                     errors.value.push(`${property}: ${error.response.data[property]}`)
                 }
-                console.log(JSON.stringify(error.response.data))
 
             } else if (error.message) {
                 errors.value.push('Something went wrong. Please try again')
-                console.log(JSON.stringify(error))
             }
         })
 }

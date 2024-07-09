@@ -36,7 +36,6 @@ onMounted(() => {
 })
 
 function deleteJob(id) {
-    console.log('deleteJob', id)
     jobs.value = jobs.value.filter(job => job.id !== id)
 }
 

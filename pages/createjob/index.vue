@@ -22,7 +22,6 @@ let company_email = ref('')
 let errors = ref([])
 
 async function submitForm() {
-    console.log('submitForm')
 
     errors.value = []
 
@@ -75,7 +74,6 @@ async function submitForm() {
             'Content-Type': 'application/json'
         }
     }).then(data => {
-        console.log('created', data);
         useRouter().push({ path: '/myjobs' })
     })
         .catch(error => {
@@ -84,11 +82,9 @@ async function submitForm() {
                 for (const property in error.response.data) {
                     errors.value.push(`${property}: ${error.response.data[property]}`)
                 }
-                console.log(JSON.stringify(error.response.data))
 
             } else if (error.message) {
                 errors.value.push('Something went wrong. Please try again')
-                console.log(JSON.stringify(error))
             }
         })
 }

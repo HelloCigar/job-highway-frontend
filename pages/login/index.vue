@@ -16,7 +16,6 @@ let errors = ref([])
 
 
 async function submitForm() {
-    console.log('submitForm')
 
     errors.value = []
 
@@ -27,7 +26,6 @@ async function submitForm() {
             password: password.value
         }
     }).then(data => {
-        console.log('token', data.auth_token);
 
         useUserStore().setToken(data.auth_token, email.value)
 
@@ -39,11 +37,9 @@ async function submitForm() {
                 for (const property in error.response.data) {
                     errors.value.push(`${property}: ${error.response.data[property]}`)
                 }
-                console.log(JSON.stringify(error.response.data))
 
             } else if (error.message) {
                 errors.value.push('Something went wrong. Please try again')
-                console.log(JSON.stringify(error))
             }
         })
 }
