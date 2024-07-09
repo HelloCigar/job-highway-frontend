@@ -115,7 +115,7 @@ function toggleCategory(id) {
                         <div class="mb-4 flex items-center justify-center">
                             <h5
                                 class="block font-sans text-xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
-                                {{ jobs.length > 0 ? jobs.length : 0 }} Jobs Found
+                                {{ jobs?.length > 0 ? jobs.length : 0 }} Jobs Found
                             </h5>
                         </div>
                         <div class="divide-y divide-gray-200">
