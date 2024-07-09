@@ -1,13 +1,13 @@
 <script setup>
 const emit = defineEmits(['deleteJob', 'editJob'])
-
+const apiUrl = useRuntimeConfig().public.apiUrl
 defineProps({
     myJob: Boolean,
     job: Object
 })
 
 async function deleteJob(id) {
-    await $fetch(`http://127.0.0.1:8000/api/v1/jobs/${id}/delete/`, {
+    await $fetch(`${apiUrl}/api/v1/jobs/${id}/delete/`, {
         method: 'DELETE',
         headers: {
             'Authorization': `token ${useUserStore().user.token}`,

@@ -59,7 +59,7 @@ function deleteJob(id) {
                     class="block antialiased tracking-normal font-sans text-4xl font-semibold leading-[1.3] text-inherit">
                     My Jobs
                 </h2>
-                <JobInfo my-job="true" v-for="(job, index) in jobs" :key="index" :job="job"
+                <JobInfo :my-job="true" v-for="(job, index) in jobs" :key="index" :job="job"
                     v-on:deleteJob="$event => deleteJob(job?.id)" />
             </div>
         </div>
