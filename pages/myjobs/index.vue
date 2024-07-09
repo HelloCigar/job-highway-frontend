@@ -51,7 +51,7 @@ function deleteJob(id) {
             <div v-else-if="jobs?.length === 0">
                 <h2
                     class="block antialiased tracking-normal font-sans text-4xl font-semibold leading-[1.3] text-inherit">
-                    My Jobs
+                    No Jobs Found
                 </h2>
             </div>
             <div v-else>
