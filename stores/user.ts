@@ -54,6 +54,8 @@ export const useUserStore = defineStore({
         removeToken() {
             this.user.token = ''
             this.user.email = ''
+            localStorage.removeItem('user.token')
+            localStorage.removeItem('user.email')
             this.user.isAuthenticated = false
         },
     }

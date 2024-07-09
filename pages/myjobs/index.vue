@@ -4,6 +4,15 @@ const apiUrl = useRuntimeConfig().public.apiUrl
 const pending = ref(true)
 const jobs = ref()
 
+onMounted(() => {
+    if (useStore.user.isAuthenticated) {
+        getJobs()
+    } else {
+        useRouter().push({ path: '/login' })
+    }
+})
+
+
 async function getJobs() {
     await $fetch(`${apiUrl}/api/v1/jobs/my-jobs/`, {
         headers: {
@@ -25,14 +34,6 @@ useSeoMeta({
     title: 'My Jobs',
     ogTitle: 'JobHighway: Home',
     description: 'Browse all available jobs and apply!',
-})
-
-onMounted(() => {
-    if (useStore.user.isAuthenticated) {
-        getJobs()
-    } else {
-        useRouter().push({ path: '/login' })
-    }
 })
 
 function deleteJob(id) {
