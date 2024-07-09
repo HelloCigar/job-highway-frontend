@@ -1,9 +1,10 @@
 <script setup>
 const useStore = useUserStore()
 const jobs = ref()
+const apiUrl = useRuntimeConfig().public.apiUrl
 
 async function getJobs() {
-    await $fetch('http://127.0.0.1:8000/api/v1/jobs/my-jobs/', {
+    await $fetch(`${apiUrl}/api/v1/jobs/my-jobs/`, {
         headers: {
             'Authorization': `token ${useStore.user.token}`,
             'Content-Type': 'application/json'

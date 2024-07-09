@@ -1,8 +1,9 @@
 <script setup>
 import Skeleton from '~/components/Skeleton.vue';
+const apiUrl = useRuntimeConfig().public.apiUrl
 
 const { id } = useRoute().params
-const { data: job, status } = await useFetch(`http://127.0.0.1:8000/api/v1/jobs/${id}/`)
+const { data: job, status } = await useFetch(`${apiUrl}/api/v1/jobs/${id}/`)
 
 useSeoMeta({
     title: `Apply: ${job?.value.title}`,

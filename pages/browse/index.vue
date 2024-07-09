@@ -2,12 +2,13 @@
 //Search Query
 let queryRef = ref('')
 let query = ''
+const apiUrl = useRuntimeConfig().public.apiUrl
 
-const { data: jobCategories, status: status } = await useFetch('http://127.0.0.1:8000/api/v1/jobs/categories/')
+const { data: jobCategories, status: status } = await useFetch(`${apiUrl}/api/v1/jobs/categories/`)
 let selectedCategoriesRef = ref('')
 let selectedCategories = []
 
-let { data: jobs } = await useFetch(`http://127.0.0.1:8000/api/v1/jobs/`, {
+let { data: jobs } = await useFetch(`${apiUrl}/api/v1/jobs/`, {
     query: {
         query: queryRef,
         categories: selectedCategoriesRef

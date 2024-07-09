@@ -18,6 +18,11 @@ export default defineNuxtConfig({
       ],
     },
   },
+  runtimeConfig: {
+    public: {
+      apiUrl: process.env.API_BASE_URL,
+    }
+  },
   compatibilityDate: '2024-04-03',
   devtools: { enabled: true },
   postcss: {

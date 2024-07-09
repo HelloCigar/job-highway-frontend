@@ -1,4 +1,5 @@
 <script setup>
+const apiUrl = useRuntimeConfig().public.apiUrl
 
 const useStore = useUserStore()
 const { id } = useRoute().params
@@ -12,7 +13,7 @@ onMounted(() => {
     }
 })
 
-const { data: job, status } = await useFetch(`http://127.0.0.1:8000/api/v1/jobs/${id}/`)
+const { data: job, status } = await useFetch(`${apiUrl}/api/v1/jobs/${id}/`)
 
 let title = ref(job?.value.title)
 let description = ref(job?.value.description)
@@ -57,7 +58,7 @@ async function submitForm() {
         errors.value.push('Company email is required')
     }
 
-    await $fetch(`http://127.0.0.1:8000/api/v1/jobs/${id}/edit/`, {
+    await $fetch(`${apiUrl}/api/v1/jobs/${id}/edit/`, {
         method: 'PUT',
         body: {
             category: job?.value.category,

@@ -2,6 +2,7 @@
 definePageMeta({
     layout: 'custom',
 });
+const apiUrl = useRuntimeConfig().public.apiUrl
 
 const router = useRouter()
 
@@ -21,7 +22,7 @@ async function submitForm() {
         return
     }
 
-    await $fetch('http://127.0.0.1:8000/api/v1/users/', {
+    await $fetch(`${apiUrl}/api/v1/users/`, {
         method: 'POST',
         body: {
             username: email.value,

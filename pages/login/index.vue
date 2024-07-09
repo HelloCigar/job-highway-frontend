@@ -1,4 +1,6 @@
 <script setup>
+const apiUrl = useRuntimeConfig().public.apiUrl
+
 definePageMeta({
     layout: 'custom',
 });
@@ -18,7 +20,7 @@ async function submitForm() {
 
     errors.value = []
 
-    await $fetch('http://127.0.0.1:8000/api/v1/token/login/', {
+    await $fetch(`${apiUrl}/api/v1/token/login/`, {
         method: 'POST',
         body: {
             username: email.value,

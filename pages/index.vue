@@ -1,8 +1,10 @@
 <script setup>
-const { data: jobs } = await useFetch('http://127.0.0.1:8000/api/v1/jobs/newest/')
+const apiUrl = useRuntimeConfig().public.apiUrl
+
+const { data: jobs } = await useFetch(`${apiUrl}/api/v1/jobs/newest/`)
 
 useSeoMeta({
-    title: 'Home',
+    title: 'JobHighway: Home',
     ogTitle: 'JobHighway: Home',
     description: 'Browse all available jobs and apply!',
 })
