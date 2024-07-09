@@ -1,25 +1,25 @@
 <script setup>
 const useStore = useUserStore()
 const apiUrl = useRuntimeConfig().public.apiUrl
+const pending = ref(true)
+const jobs = ref()
 
-
-const { data: jobs, status } = await useLazyFetch(`${apiUrl}/api/v1/jobs/my-jobs/`)
-
-// async function getJobs() {
-//     await $fetch(`${apiUrl}/api/v1/jobs/my-jobs/`, {
-//         headers: {
-//             'Authorization': `token ${useStore.user.token}`,
-//             'Content-Type': 'application/json'
-//         },
-//     })
-//         .then(response => {
-//             jobs.value = response
-//             console.log('jobs', jobs.value);
-//         })
-//         .catch(
-//             error => console.log(error)
-//         )
-// }
+async function getJobs() {
+    await $fetch(`${apiUrl}/api/v1/jobs/my-jobs/`, {
+        headers: {
+            'Authorization': `token ${useStore.user.token}`,
+            'Content-Type': 'application/json'
+        },
+    })
+        .then(response => {
+            pending.value = false
+            jobs.value = response
+            console.log('jobs', jobs.value);
+        })
+        .catch(
+            error => console.log(error)
+        )
+}
 
 useSeoMeta({
     title: 'My Jobs',
@@ -29,7 +29,7 @@ useSeoMeta({
 
 onMounted(() => {
     if (useStore.user.isAuthenticated) {
-        return
+        getJobs()
     } else {
         useRouter().push({ path: '/login' })
     }
@@ -45,13 +45,13 @@ function deleteJob(id) {
 <template>
     <div class="py-10 grid md:grid-cols-4 gap-3">
         <div class="md:col-span-4 px-2">
-            <div v-if="status === 'pending'">
+            <div v-if="pending">
                 <Skeleton />
             </div>
             <div v-else-if="jobs?.length === 0">
                 <h2
                     class="block antialiased tracking-normal font-sans text-4xl font-semibold leading-[1.3] text-inherit">
-                    No Jobs Yet
+                    My Jobs
                 </h2>
             </div>
             <div v-else>
