@@ -3,6 +3,7 @@
 let queryRef = ref('')
 let query = ''
 const apiUrl = useRuntimeConfig().public.apiUrl
+const loaded = ref(true)
 
 const { data: jobCategories, status: status } = await useFetch(`${apiUrl}/api/v1/jobs/categories/`)
 let selectedCategoriesRef = ref('')
@@ -12,10 +13,20 @@ let { data: jobs } = await useFetch(`${apiUrl}/api/v1/jobs/`, {
     query: {
         query: queryRef,
         categories: selectedCategoriesRef
+    },
+    onResponse({ request, response }) {
+        if (response.status === 200) {
+            loaded.value = true
+        }
     }
 })
 
+
 function performSearch() {
+    loaded.value = false
+    if (query === '') {
+        loaded.value = true
+    }
     queryRef.value = query
 }
 
@@ -36,7 +47,7 @@ function toggleCategory(id) {
     } else {
         selectedCategories.splice(index, 1)
     }
-
+    loaded.value = false
     selectedCategoriesRef.value = selectedCategories.join(',')
 }
 
@@ -47,7 +58,7 @@ function toggleCategory(id) {
     <div class="grid md:grid-cols-12 gap-3 py-10">
         <div class="md:col-span-4">
             <div
-                class="relative flex h-full w-full max-w-[20rem] flex-col rounded-xl bg-white bg-clip-border p-4 text-gray-700 shadow-xl shadow-blue-gray-900/5">
+                class="relative flex w-full max-w-[20rem] flex-col rounded-xl bg-white bg-clip-border p-4 text-gray-700 shadow-xl shadow-blue-gray-900/5">
                 <div class="flex items-center gap-4 p-4 mb-2">
                     <img src="https://docs.material-tailwind.com/img/logo-ct-dark.png" alt="brand" class="w-8 h-8" />
                     <h5
@@ -68,7 +79,7 @@ function toggleCategory(id) {
                                 </svg>
                             </button>
                         </div>
-                        <input @keyup.enter="performSearch"
+                        <input @keyup.enter="performSearch" @keyup="performSearch"
                             class="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 !pr-9 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                             placeholder="" v-model="query" />
                         <label
@@ -109,7 +120,7 @@ function toggleCategory(id) {
         <div class="md:col-span-8">
             <div class="relative flex flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
                 <div class="p-6">
-                    <div v-if="status !== 'pending'">
+                    <div v-if="loaded">
                         <div class="mb-4 flex items-center justify-center">
                             <h5
                                 class="block font-sans text-xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
@@ -121,7 +132,7 @@ function toggleCategory(id) {
                         </div>
                     </div>
                     <div v-else>
-                        <Skeleton />
+                        <Spinner />
                     </div>
                 </div>
             </div>
