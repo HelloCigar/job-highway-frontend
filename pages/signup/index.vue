@@ -55,7 +55,7 @@ useSeoMeta({
         class="relative flex flex-col text-gray-700 bg-white shadow-md w-96 rounded-xl bg-clip-border mb-16">
         <div
             class="relative grid mx-4 mb-4 -mt-6 overflow-hidden text-white shadow-lg h-28 place-items-center rounded-xl bg-gradient-to-tr from-gray-900 to-gray-800 bg-clip-border shadow-gray-900/20">
-            <h3 class="block font-sans text-2xl antialiased font-semibold leading-snug tracking-normal text-white">
+            <h3 class="block font-sans text-3xl antialiased font-semibold leading-snug tracking-normal text-white">
                 Signup
             </h3>
         </div>
@@ -124,7 +124,7 @@ useSeoMeta({
             <p class="flex justify-center mt-6 font-sans text-sm antialiased font-light leading-normal text-inherit">
                 Already have an account?
                 <NuxtLink to="/login"
-                    class="block ml-1 font-sans text-sm antialiased font-bold leading-normal text-blue-gray-900">
+                    class="block ml-1 font-sans text-sm antialiased font-bold leading-normal text-teal-500">
                     Login
                 </NuxtLink>
             </p>
