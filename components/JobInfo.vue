@@ -41,7 +41,7 @@ async function deleteJob(id) {
                 {{ job?.position_location }}
             </h6>
             <p class="block font-sans text-sm font-light leading-normal text-gray-700 antialiased">
-                {{ job?.position_salary }}
+                ${{ job?.position_salary }} / year
             </p>
         </div>
         <!-- Date Posted -->
@@ -59,11 +59,11 @@ async function deleteJob(id) {
             <div v-if="myJob" class="flex gap-x-1 mt-2">
                 <div class="flex-1">
                     <NuxtLink :to='"/editjob/" + job?.id'>
-                        <Button :str="`Edit`" />
+                        <Button class="bg-yellow-700" :str="`Edit`" />
                     </NuxtLink>
                 </div>
                 <div class="flex-1">
-                    <Button @click="$event => deleteJob(job?.id)" :str="`Delete`" />
+                    <Button class="bg-red-700" @click="$event => deleteJob(job?.id)" :str="`Delete`" />
                 </div>
             </div>
         </div>
