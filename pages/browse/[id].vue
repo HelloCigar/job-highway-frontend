@@ -30,7 +30,7 @@ useSeoMeta({
                     </p>
                 </div>
                 <a :href="`mailto:${job?.company_email}`">
-                    <Button :str="`Apply via Email`" />
+                    <Button :str="`Apply via Email`" :black="true" />
                 </a>
             </div>
         </div>
