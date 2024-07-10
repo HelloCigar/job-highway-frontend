@@ -21,6 +21,17 @@ async function submitForm() {
         return
     }
 
+    // password must be > 8 char
+    if (password.value.length < 8) {
+        errors.value.push('Password must be at least 8 characters')
+    }
+
+    // password must cant be entirely numeric
+    if (/^[+-]?\d+(\.\d+)?$/.test(password.value)) {
+        errors.value.push('Password cannot be entirely numeric')
+    }
+
+
     await $fetch(`${apiUrl}/api/v1/users/`, {
         method: 'POST',
         body: {
@@ -29,6 +40,8 @@ async function submitForm() {
         }
     }).then(response => {
         router.push({ path: '/login' })
+        username.value = ''
+        password.value = ''
     })
         .catch(error => {
 
@@ -77,7 +90,7 @@ useSeoMeta({
                 </label>
             </div>
             <div class="relative h-11 w-full min-w-[200px]">
-                <input
+                <input required @focus="() => errors = []"
                     class="w-full h-full px-3 py-3 font-sans text-sm font-normal transition-all bg-transparent border rounded-md peer border-blue-gray-200 border-t-transparent text-blue-gray-700 outline outline-0 placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-teal-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                     placeholder=" " type="password" v-model="password" />
                 <label class="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none !overflow-visible truncate text-[11px] font-normal leading-tight 
@@ -93,7 +106,7 @@ useSeoMeta({
                 </label>
             </div>
             <div class="relative h-11 w-full min-w-[200px]">
-                <input
+                <input required @focus="() => errors = []"
                     class="w-full h-full px-3 py-3 font-sans text-sm font-normal transition-all bg-transparent border rounded-md peer border-blue-gray-200 border-t-transparent text-blue-gray-700 outline outline-0 placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-teal-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                     placeholder=" " type="password" v-model="confirmPassword" />
                 <label class="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none !overflow-visible truncate text-[11px] font-normal leading-tight 
@@ -108,10 +121,10 @@ useSeoMeta({
                     Repeat Password
                 </label>
             </div>
-            <div class="relative h-11 w-full min-w-[200px]">
-                <h3 v-if="errors.length > 0"
+            <div class="relative h-11 w-full min-w-[100px]">
+                <h3 v-for="(error, index) in errors" :key="index"
                     class="block text-red-500 text-center font-sans text-sm antialiased font-light leading-normal">
-                    {{ errors?.join(', ') }}
+                    {{ error }}
                 </h3>
             </div>
         </div>

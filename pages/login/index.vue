@@ -28,16 +28,11 @@ async function submitForm() {
     }).then(data => {
 
         useUserStore().setToken(data.auth_token, email.value)
-
         router.push({ path: '/' })
     })
-        .catch(error => {
-
-            if (error.response) {
-                for (const property in error.response.data) {
-                    errors.value.push(`${property}: ${error.response.data[property]}`)
-                }
-
+        .catch((error) => {
+            if (error.response.status == 400) {
+                errors.value.push(`Wrong email or password`)
             } else if (error.message) {
                 errors.value.push('Something went wrong. Please try again')
             }
@@ -62,7 +57,7 @@ useSeoMeta({
         </div>
         <div class="flex flex-col gap-4 p-6">
             <div class="relative h-11 w-full min-w-[200px]">
-                <input
+                <input @focus="errors = []"
                     class="w-full h-full px-3 py-3 font-sans text-sm font-normal transition-all bg-transparent border rounded-md peer border-blue-gray-200 border-t-transparent text-blue-gray-700 outline outline-0 placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-teal-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                     placeholder=" " type="email" v-model="email" required />
                 <label class="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none !overflow-visible truncate text-[11px] font-normal leading-tight 
@@ -78,7 +73,7 @@ useSeoMeta({
                 </label>
             </div>
             <div class="relative h-11 w-full min-w-[200px]">
-                <input
+                <input @focus="errors = []"
                     class="w-full h-full px-3 py-3 font-sans text-sm font-normal transition-all bg-transparent border rounded-md peer border-blue-gray-200 border-t-transparent text-blue-gray-700 outline outline-0 placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-teal-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                     placeholder=" " type="password" v-model="password" />
                 <label class="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none !overflow-visible truncate text-[11px] font-normal leading-tight 
