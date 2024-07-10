@@ -79,7 +79,7 @@ function toggleCategory(id) {
                                 </svg>
                             </button>
                         </div>
-                        <input @keyup.enter="performSearch" @keyup="performSearch"
+                        <input @keyup="performSearch"
                             class="peer h-full w-full rounded-[7px] border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-2.5 !pr-9 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-gray-900 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                             placeholder="" v-model="query" />
                         <label
@@ -123,8 +123,12 @@ function toggleCategory(id) {
                     <div v-if="loaded">
                         <div class="mb-4 flex items-center justify-center">
                             <h5
+                                class="block font-sans text-xl font-semibold leading-snug tracking-normal text-teal-500 antialiased mx-2">
+                                {{ jobs?.length > 0 ? jobs.length : 0 }}
+                            </h5>
+                            <h5
                                 class="block font-sans text-xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
-                                {{ jobs?.length > 0 ? jobs.length : 0 }} Jobs Found
+                                {{ jobs?.length > 1 ? 'Jobs' : 'Job' }} Found
                             </h5>
                         </div>
                         <div class="divide-y divide-gray-200">

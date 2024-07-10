@@ -5,7 +5,7 @@ defineProps({
 </script>
 <template>
     <div
-        class="relative flex flex-col bg-clip-border rounded-xl bg-gradient-to-tr bg-teal-400 text-white shadow-gray-900/20 shadow-md w-full max-w-[20rem] p-8">
+        class="relative flex flex-col bg-clip-border rounded-xl bg-gradient-to-tr bg-teal-500 text-white shadow-gray-900/20 shadow-md w-full max-w-[20rem] p-8">
         <div
             class="relative pb-8 m-0 mb-2 overflow-hidden text-center text-gray-700 bg-transparent border-b rounded-none shadow-none bg-clip-border border-white/10">
             <h1 class="flex justify-start gap-1 mt-6 font-sans antialiased font-normal tracking-normal text-white">
