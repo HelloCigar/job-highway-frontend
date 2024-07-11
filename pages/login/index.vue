@@ -5,7 +5,12 @@ definePageMeta({
     layout: 'custom',
 });
 
-import { useUserStore } from '#imports';
+onBeforeMount(() => {
+    useUserStore().initStore()
+    if (useUserStore().user.isAuthenticated) {
+        useRouter().push({ path: '/' })
+    }
+})
 
 
 const router = useRouter()

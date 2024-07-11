@@ -1,4 +1,12 @@
 <script setup>
+
+onBeforeMount(() => {
+    useUserStore().initStore()
+    if (useUserStore().user.isAuthenticated) {
+        useRouter().push({ path: '/' })
+    }
+})
+
 definePageMeta({
     layout: 'custom',
 });
