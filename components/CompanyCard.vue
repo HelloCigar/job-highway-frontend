@@ -27,7 +27,7 @@ defineProps({
                 <span class="self-end text-base">{{ job?.title }}</span>
             </h1>
             <h1 class="flex justify-start gap-1 mt-6 font-sans antialiased font-normal tracking-normal text-white">
-                <span class="self-end text-base">${{ job?.position_salary }}</span>
+                <span class="self-end text-base">${{ job?.position_salary }} / year</span>
             </h1>
             <h1 class="flex justify-start gap-1 mt-6 font-sans antialiased font-normal tracking-normal text-white">
                 <span class="self-end text-base">{{ job?.position_location }}</span>
