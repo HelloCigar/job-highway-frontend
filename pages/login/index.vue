@@ -5,14 +5,6 @@ definePageMeta({
     layout: 'custom',
 });
 
-onBeforeMount(() => {
-    useUserStore().initStore()
-    if (useUserStore().user.isAuthenticated) {
-        useRouter().push({ path: '/' })
-    }
-})
-
-
 const router = useRouter()
 
 let email = ref('')
@@ -32,12 +24,17 @@ async function submitForm() {
         }
     }).then(data => {
 
-        useUserStore().setToken(data.auth_token, email.value)
+        useUserStore().setToken(data.auth_token)
         router.push({ path: '/' })
     })
-        .catch((error) => {
-            if (error.response.status == 400) {
-                errors.value.push(`Wrong email or password`)
+        .catch(error => {
+            if (error.response._data) {
+                console.log(error.response._data)
+                for (const property in error.response._data) {
+                    for (const msg in error.response._data[property]) {
+                        errors.value.push(`${error.response._data[property][msg]}`)
+                    }
+                }
             } else if (error.message) {
                 errors.value.push('Something went wrong. Please try again')
             }

@@ -17,9 +17,8 @@ export const useUserStore = defineStore({
         initStore() {
             this.user.isAuthenticated = false
 
-            if (localStorage.getItem('user.token')) {
-                const userToken = localStorage.getItem('user.token');
-                const userEmail = localStorage.getItem('user.email');
+            if (localStorage.getItem('token')) {
+                const userToken = localStorage.getItem('token');
                 if (userToken !== null) {
                     this.user.token = userToken;
                     this.user.isAuthenticated = true
@@ -30,14 +29,12 @@ export const useUserStore = defineStore({
          * Sets the token and email for the user, and marks the user as authenticated.
          *
          * @param {string} token - The token to set for the user
-         * @param {string} email - The email to set for the user
          * @return {void} No return value
          */
-        setToken(token: string, email: string) {
+        setToken(token: string) {
             this.user.token = token
             this.user.isAuthenticated = true
-
-            localStorage.setItem('user.token', token)
+            localStorage.setItem('token', token)
         },
 
         /**
@@ -46,16 +43,16 @@ export const useUserStore = defineStore({
          * @return {void}
          */
         async removeToken() {
+            this.user.isAuthenticated = false
             const logoutLink = `${useRuntimeConfig().public.apiUrl}/api/v1/token/logout/`
             await $fetch(logoutLink, {
                 method: 'POST',
                 headers: {
-                    'Authorization': `token ${localStorage.getItem('user.token')}`,
+                    'Authorization': `token ${localStorage.getItem('token')}`,
                 }
             }).then(() => {
-                this.user.isAuthenticated = false
                 this.user.token = ''
-                localStorage.removeItem('user.token')
+                localStorage.removeItem('token')
             }).catch((error) => {
                 console.log(error)
             })
