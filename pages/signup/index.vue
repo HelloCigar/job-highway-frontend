@@ -40,7 +40,6 @@ async function submitForm() {
                         else {
                             errors.value.push(`${error.response._data[property][msg]}`)
                         }
-                        console.log(error.response._data[property])
                     }
                 }
             } else if (error.message) {

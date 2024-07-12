@@ -29,7 +29,6 @@ async function submitForm() {
     })
         .catch(error => {
             if (error.response._data) {
-                console.log(error.response._data)
                 for (const property in error.response._data) {
                     for (const msg in error.response._data[property]) {
                         errors.value.push(`${error.response._data[property][msg]}`)
