@@ -1,12 +1,5 @@
 <script setup>
 
-onBeforeMount(() => {
-    useUserStore().initStore()
-    if (useUserStore().user.isAuthenticated) {
-        useRouter().push({ path: '/' })
-    }
-})
-
 definePageMeta({
     layout: 'custom',
 });
@@ -24,40 +17,32 @@ async function submitForm() {
 
     errors.value = []
 
-    if (password.value !== confirmPassword.value) {
-        errors.value.push('Passwords do not match')
-        return
-    }
-
-    // password must be > 8 char
-    if (password.value.length < 8) {
-        errors.value.push('Password must be at least 8 characters')
-    }
-
-    // password must cant be entirely numeric
-    if (/^[+-]?\d+(\.\d+)?$/.test(password.value)) {
-        errors.value.push('Password cannot be entirely numeric')
-    }
-
-
     await $fetch(`${apiUrl}/api/v1/users/`, {
         method: 'POST',
         body: {
             username: email.value,
-            password: password.value
+            password: password.value,
+            re_password: confirmPassword.value
         }
     }).then(response => {
         router.push({ path: '/login' })
         username.value = ''
         password.value = ''
+        confirmPassword.value = ''
     })
         .catch(error => {
-
-            if (error.response) {
-                for (const property in error.response.data) {
-                    errors.value.push(`${property}: ${error.response.data[property]}`)
+            if (error.response._data) {
+                for (const property in error.response._data) {
+                    for (const msg in error.response._data[property]) {
+                        if (error.response._data[property][msg].includes('exists')) {
+                            errors.value.push(`A user with that email already exists.`)
+                        }
+                        else {
+                            errors.value.push(`${error.response._data[property][msg]}`)
+                        }
+                        console.log(error.response._data[property])
+                    }
                 }
-
             } else if (error.message) {
                 errors.value.push('Something went wrong. Please try again')
             }
