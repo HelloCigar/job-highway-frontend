@@ -5,7 +5,6 @@ export const useUserStore = defineStore({
     state: () => ({
         user: {
             isAuthenticated: false,
-            email: '',
             token: '',
         }
     }),
@@ -23,11 +22,8 @@ export const useUserStore = defineStore({
                 const userEmail = localStorage.getItem('user.email');
                 if (userToken !== null) {
                     this.user.token = userToken;
+                    this.user.isAuthenticated = true
                 }
-                if (userEmail !== null) {
-                    this.user.email = userEmail;
-                }
-                this.user.isAuthenticated = true
             }
         },
         /**
@@ -39,11 +35,9 @@ export const useUserStore = defineStore({
          */
         setToken(token: string, email: string) {
             this.user.token = token
-            this.user.email = email
             this.user.isAuthenticated = true
 
             localStorage.setItem('user.token', token)
-            localStorage.setItem('user.email', email)
         },
 
         /**
@@ -51,12 +45,20 @@ export const useUserStore = defineStore({
          *
          * @return {void}
          */
-        removeToken() {
-            this.user.token = ''
-            this.user.email = ''
-            localStorage.removeItem('user.token')
-            localStorage.removeItem('user.email')
-            this.user.isAuthenticated = false
+        async removeToken() {
+            const logoutLink = `${useRuntimeConfig().public.apiUrl}/api/v1/token/logout/`
+            await $fetch(logoutLink, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `token ${localStorage.getItem('user.token')}`,
+                }
+            }).then(() => {
+                this.user.isAuthenticated = false
+                this.user.token = ''
+                localStorage.removeItem('user.token')
+            }).catch((error) => {
+                console.log(error)
+            })
         },
     }
 });
