@@ -23,7 +23,7 @@ async function deleteJob(id) {
 
 
 <template>
-    <div class="grid grid-cols-4 items-center pb-3 pt-3 last:pb-0">
+    <div class="grid grid-cols-3 lg:grid-cols-4 items-center pb-3 pt-3 last:pb-0">
         <!-- Title and Company -->
         <div class="flex flex-col items-start">
             <h6
@@ -45,7 +45,7 @@ async function deleteJob(id) {
             </p>
         </div>
         <!-- Date Posted -->
-        <div class="flex justify-center">
+        <div class="hidden lg:flex items-center justify-center">
             <h6
                 class="block font-sans text-sm font-thin leading-relaxed tracking-normal text-blue-gray-900 antialiased">
                 Posted on: {{ job?.created_at_formatted }}
