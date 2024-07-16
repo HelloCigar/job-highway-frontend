@@ -4,7 +4,7 @@ const userStore = useUserStore()
 
 <template>
     <nav
-        class="block w-full max-w-screen-xl px-4 py-2 mx-auto text-white bg-white border shadow-md rounded-xl border-white/80 bg-opacity-80 backdrop-blur-2xl backdrop-saturate-200 lg:px-8 lg:py-4">
+        class="block w-full max-w-screen-xl px-4 py-2 mx-auto text-white bg-white border shadow-md md:rounded-xl border-white/80 bg-opacity-80 backdrop-blur-2xl backdrop-saturate-200 lg:px-8 lg:py-4">
         <div class="container flex items-center justify-between mx-auto text-blue-gray-900">
             <NuxtLink to="/" class="flex items-center justify-center">
                 <div

@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 const emit = defineEmits(['deleteJob', 'editJob'])
 const apiUrl = useRuntimeConfig().public.apiUrl
 defineProps({
@@ -6,7 +6,7 @@ defineProps({
     job: Object
 })
 
-async function deleteJob(id) {
+async function deleteJob(id: number) {
     await $fetch(`${apiUrl}/api/v1/jobs/${id}/delete/`, {
         method: 'DELETE',
         headers: {

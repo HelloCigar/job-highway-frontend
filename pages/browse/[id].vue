@@ -14,8 +14,8 @@ useSeoMeta({
 </script>
 
 <template>
-    <div class="py-10 grid md:grid-cols-4 gap-3">
-        <div class="md:col-span-3 px-2">
+    <div class="py-5 px-5 grid md:gap-3 md:px-0 md:py-10 md:grid-cols-9 w-full">
+        <div class="min-h-24 md:col-span-6">
             <div v-if="status === 'pending'">
                 <Skeleton />
             </div>
@@ -26,17 +26,18 @@ useSeoMeta({
                 </h2>
                 <div class="h-64 pt-3">
                     <p class="block font-sans text-lg antialiased font-light leading-relaxed text-inherit">
-                        {{ job.description }}
+                        Description: {{ job.description }}
                     </p>
                 </div>
-                <a :href="`mailto:${job?.company_email}`">
+                <a class="hidden md:block" :href="`mailto:${job?.company_email}`">
                     <Button :str="`Apply via Email`" :black="true" />
                 </a>
             </div>
         </div>
 
-        <div class="md:col-span-1">
+        <div class="md:col-span-3">
             <CompanyCard :job="job" />
         </div>
     </div>
+    <BottomNavBar class="md:hidden fixed bottom-0 h-24" :email="job?.company_email" />
 </template>
