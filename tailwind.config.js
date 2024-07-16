@@ -11,7 +11,11 @@ export default withMT({
     "./error.vue",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontSize: {
+        'mobile':  '0.75rem'
+      },
+    },
   },
   plugins: [],
 })
