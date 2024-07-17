@@ -20,7 +20,8 @@ useSeoMeta({
                 <Skeleton />
             </div>
             <div v-else>
-                <h2 class="antialiased tracking-normal font-sans text-4xl font-semibold leading-[1.3] text-inherit">
+                <h2
+                    class="antialiased tracking-normal font-sans text-4xl font-semibold leading-[1.3] text-inherit pb-4">
                     {{ job.title }}
                 </h2>
                 <div class="min-h-48 md:pr-4 md:pb-4">
