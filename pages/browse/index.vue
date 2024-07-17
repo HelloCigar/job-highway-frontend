@@ -138,7 +138,7 @@ function toggleCategory(id) {
                         <JobInfo v-for="(job, index) in jobs" :key="index" :job="job" />
                     </div>
                 </div>
-                <div v-else>
+                <div v-else class="flex flex-col px-6 py-3 md:p-6 w-full items-center justify-center">
                     <Spinner />
                 </div>
             </div>
