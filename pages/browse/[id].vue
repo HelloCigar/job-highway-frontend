@@ -14,18 +14,17 @@ useSeoMeta({
 </script>
 
 <template>
-    <div class="py-5 px-5 grid md:gap-3 md:px-0 md:py-10 md:grid-cols-9 w-full">
-        <div class="min-h-24 md:col-span-6">
+    <div class="py-5 px-5 flex flex-col md:grid md:gap-3 md:px-0 md:py-10 md:grid-cols-9 w-full">
+        <div class="pb-4 md:col-span-6">
             <div v-if="status === 'pending'">
                 <Skeleton />
             </div>
             <div v-else>
-                <h2
-                    class="block antialiased tracking-normal font-sans text-4xl font-semibold leading-[1.3] text-inherit">
+                <h2 class="antialiased tracking-normal font-sans text-4xl font-semibold leading-[1.3] text-inherit">
                     {{ job.title }}
                 </h2>
-                <div class="h-64 pt-3">
-                    <p class="block font-sans text-lg antialiased font-light leading-relaxed text-inherit">
+                <div class="min-h-48 md:pr-4 md:pb-4">
+                    <p class="font-sans text-lg antialiased font-light leading-relaxed text-inherit">
                         Description: {{ job.description }}
                     </p>
                 </div>
