@@ -55,11 +55,11 @@ function toggleCategory(id) {
 
 
 <template>
-    <div class="grid md:grid-cols-12 gap-3 py-10">
-        <div class="md:col-span-4">
+    <div class="flex flex-col md:grid md:grid-cols-12 md:gap-3 md:py-10">
+        <div class="flex justify-center md:col-span-4">
             <div
-                class="relative flex w-full max-w-[20rem] flex-col rounded-xl bg-white bg-clip-border p-4 text-gray-700 shadow-xl shadow-blue-gray-900/5">
-                <div class="flex items-center gap-4 p-4 mb-2">
+                class="sticky top-0 md:relative flex w-full md:max-w-[20rem] mb-6 md:my-0 flex-col md:rounded-xl bg-white bg-clip-border p-4 text-gray-700 shadow-xl shadow-blue-gray-900/5">
+                <div class="hidden md:flex items-center gap-4 p-4 mb-2">
                     <img src="https://docs.material-tailwind.com/img/logo-ct-dark.png" alt="brand" class="w-8 h-8" />
                     <h5
                         class="block font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
@@ -95,7 +95,8 @@ function toggleCategory(id) {
                         </label>
                     </div>
                 </div>
-                <nav class="flex min-w-[240px] flex-col gap-1 p-2 font-sans text-base font-normal text-blue-gray-700">
+                <nav
+                    class="hidden md:flex min-w-[240px] flex-col gap-1 p-2 font-sans text-base font-normal text-blue-gray-700">
                     <div class="relative block w-full">
                         <div role="button"
                             class="flex items-center w-full p-0 leading-tight transition-all rounded-lg outline-none text-start">
@@ -109,7 +110,7 @@ function toggleCategory(id) {
                         </div>
                         <div class="overflow-hidden">
                             <div
-                                class="block w-full py-1 font-sans text-sm antialiased font-light leading-normal text-gray-700">
+                                class="grid grid-rows-3 w-full py-1 font-sans text-sm antialiased font-light leading-normal text-gray-700">
                                 <Category :category="category" v-for="(category, index) in jobCategories" :key="index"
                                     :toggleCategory="toggleCategory" />
                             </div>
@@ -121,7 +122,7 @@ function toggleCategory(id) {
             </div>
         </div>
         <div class="md:col-span-8">
-            <div class="relative flex flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
+            <div class="relative flex flex-row md:flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
                 <div class="p-6">
                     <div v-if="loaded">
                         <div class="mb-4 flex items-center justify-center">
