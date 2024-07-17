@@ -98,15 +98,16 @@ useSeoMeta({
 
 
 <template>
-    <div class="flex justify-center py-3">
-        <div class="relative flex flex-col text-gray-700 bg-transparent shadow-none rounded-xl bg-clip-border">
+    <div class="flex justify-center py-6">
+        <div
+            class="flex flex-col px-6 md:px-24 text-gray-700 bg-transparent shadow-none rounded-xl bg-clip-border w-full">
             <h4
                 class="block font-sans text-2xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
                 Create Job
             </h4>
-            <form @submit.prevent="submitForm" class="max-w-screen-lg mt-3 mb-2 w-full">
-                <div class="flex justify-center gap-3 mb-1">
-                    <div class=" flex flex-col gap-3 mb-1">
+            <form @submit.prevent="submitForm" class="mt-3 mb-2 w-full">
+                <div class="flex flex-col md:flex-row justify-center gap-3 mb-1">
+                    <div class=" flex flex-col gap-3 mb-1 w-full">
                         <h6
                             class="block -mb-3 font-sans text-base antialiased font-semibold leading-relaxed tracking-normal text-blue-gray-900">
                             Category
@@ -159,7 +160,7 @@ useSeoMeta({
                                 class="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none !overflow-visible truncate text-[11px] font-normal leading-tight text-gray-500 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all before:content-none after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all after:content-none peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.1] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-gray-900 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:!border-gray-900 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:!border-gray-900 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500"></label>
                         </div>
                     </div>
-                    <div class="flex flex-col gap-3 mb-1">
+                    <div class="flex flex-col gap-3 mb-1 w-full">
                         <h6
                             class="block -mb-3 font-sans text-base antialiased font-semibold leading-relaxed tracking-normal text-blue-gray-900">
                             Location
