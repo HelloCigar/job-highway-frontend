@@ -56,9 +56,9 @@ function toggleCategory(id) {
 
 <template>
     <div class="flex flex-col md:grid md:grid-cols-12 md:gap-3 md:py-10">
-        <div class="flex justify-center md:col-span-4">
+        <div class="flex justify-start md:col-span-4">
             <div
-                class="sticky top-0 md:relative flex w-full md:max-w-[20rem] mb-6 md:my-0 flex-col md:rounded-xl bg-white bg-clip-border p-4 text-gray-700 shadow-xl shadow-blue-gray-900/5">
+                class="sticky top-0 md:relative flex w-full md:max-w-[22rem] mb-6 md:my-0 flex-col md:rounded-xl bg-white bg-clip-border p-4 text-gray-700 shadow-xl shadow-blue-gray-900/5">
                 <div class="hidden md:flex items-center gap-4 p-4 mb-2">
                     <img src="https://docs.material-tailwind.com/img/logo-ct-dark.png" alt="brand" class="w-8 h-8" />
                     <h5
