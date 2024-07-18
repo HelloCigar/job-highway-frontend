@@ -123,7 +123,7 @@ function toggleCategory(id) {
         </div>
         <div class="md:col-span-8">
             <div
-                class="relative flex flex-row md:flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md md:h-[650px] md:overflow-scroll">
+                class="relative flex flex-row md:flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md md:h-[650px] md:overflow-scroll md:overflow-x-hidden">
                 <div v-if="loaded" class="flex flex-col px-6 py-3 md:p-6 w-full items-center justify-center">
                     <div class="mb-4 flex flex-row">
                         <h5
