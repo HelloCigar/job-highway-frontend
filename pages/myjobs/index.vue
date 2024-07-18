@@ -23,7 +23,6 @@ async function getJobs() {
         .then(response => {
             pending.value = false
             jobs.value = response
-            console.log('jobs', jobs.value);
         })
         .catch(
             error => console.log(error)
