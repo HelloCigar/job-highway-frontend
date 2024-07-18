@@ -52,20 +52,15 @@ async function deleteJob(id: number) {
             </h6>
         </div>
         <!-- Buttons -->
-        <div class="flex flex-col items-end">
+        <div class="flex flex-col gap-1 2xl:flex-row justify-end items-end">
             <NuxtLink :to='"/browse/" + job?.id'>
-                <Button :str="`Details`" />
+                <Button :str="`Details`" width="w-24" />
             </NuxtLink>
-            <div v-if="myJob" class="flex gap-x-1 mt-2">
-                <div class="flex-1">
-                    <NuxtLink :to='"/editjob/" + job?.id'>
-                        <Button class="bg-yellow-700" :str="`Edit`" />
-                    </NuxtLink>
-                </div>
-                <div class="flex-1">
-                    <Button class="bg-red-700" @click="$event => deleteJob(job?.id)" :str="`Delete`" />
-                </div>
-            </div>
+            <NuxtLink :to='"/editjob/" + job?.id' v-if="myJob">
+                <Button class="bg-yellow-700" :str="`Edit`" width="w-24" />
+            </NuxtLink>
+            <Button v-if="myJob" class="bg-red-700" @click="$event => deleteJob(job?.id)" :str="`Delete`"
+                width="w-24" />
         </div>
     </div>
 </template>

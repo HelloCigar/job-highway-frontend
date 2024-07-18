@@ -43,7 +43,7 @@ function deleteJob(id) {
 </script>
 
 <template>
-    <div class="py-10 grid md:grid-cols-4 gap-3">
+    <div class="py-10 grid px-3 md:px-0 md:grid-cols-4 gap-3">
         <div class="md:col-span-4 px-2">
             <div v-if="pending">
                 <Skeleton />
