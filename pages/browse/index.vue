@@ -122,19 +122,19 @@ function toggleCategory(id) {
             </div>
         </div>
         <div class="md:col-span-8">
+            <div class="mb-4 flex flex-row items-center justify-center">
+                <h5
+                    class="block font-sans text-xl font-semibold leading-snug tracking-normal text-teal-500 antialiased mx-2">
+                    {{ jobs?.length > 0 ? `${jobs?.length} ` : `0 ` }}
+                </h5>
+                <h5
+                    class="block font-sans text-xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
+                    {{ jobs?.length > 1 ? 'Jobs' : 'Job' }} Found
+                </h5>
+            </div>
             <div
-                class="relative flex flex-row md:flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md md:h-[650px] md:overflow-scroll md:overflow-x-hidden">
+                class="relative flex flex-row md:flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md md:h-fit md:max-h-[625px] md:overflow-scroll md:overflow-x-hidden">
                 <div v-if="loaded" class="flex flex-col px-6 py-3 md:p-6 w-full items-center justify-center">
-                    <div class="mb-4 flex flex-row">
-                        <h5
-                            class="block font-sans text-xl font-semibold leading-snug tracking-normal text-teal-500 antialiased mx-2">
-                            {{ jobs?.length > 0 ? `${jobs?.length} ` : `0 ` }}
-                        </h5>
-                        <h5
-                            class="block font-sans text-xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
-                            {{ jobs?.length > 1 ? 'Jobs' : 'Job' }} Found
-                        </h5>
-                    </div>
                     <div class="w-full divide-y divide-gray-200">
                         <JobInfo v-for="(job, index) in jobs" :key="index" :job="job" />
                     </div>
